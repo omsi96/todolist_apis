@@ -6,8 +6,8 @@ exports.taskList = (req, res) => {
 
 exports.taskDelete = (req, res) => {
   const { taskId } = req.params;
-  foundTask = tasks.find((task) => task.id === +taskId);
-  if (foundtask) {
+  const foundTask = tasks.find((task) => task.id === +taskId);
+  if (foundTask) {
     tasks = tasks.filter((task) => task !== foundTask);
     console.log(tasks);
     res.status(204).end();
@@ -18,7 +18,8 @@ exports.taskDelete = (req, res) => {
 
 exports.taskCreate = (req, res) => {
   const id = tasks[tasks.length - 1].id + 1;
-  const newTask = { id, slug, ...req.body };
+  const done = false;
+  const newTask = { id, done, ...req.body };
   tasks.push(newTask);
   res.status(201).json(newTask);
 };
